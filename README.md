@@ -1,4 +1,6 @@
 # logos
 /g/'s Official OS - lo/g/OS
 
-// FIX ME: make logo
+// To Do:
+// 1: Make Logo
+// 2: Make OS
