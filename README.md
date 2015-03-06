@@ -5,4 +5,6 @@
 
 // 1: Make Logo
 
-// 2: Make OS
+// 2: Create IRC
+
+// 3: Make OS
