@@ -5,6 +5,7 @@
 
 // 1: Make Logo
 
-// 2: Create IRC
+// 2: Create IRC (or slack?)
+
 
 // 3: Make OS
