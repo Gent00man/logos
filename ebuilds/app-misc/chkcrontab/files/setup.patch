@@ -1,0 +1,24 @@
+--- setup.py	2013-08-15 02:01:35.000000000 +0200
++++ setup.py	2014-10-08 11:55:32.800125435 +0200
+@@ -137,21 +137,6 @@
+ 
+   def run(self):
+     install.run(self)
+-    manpages = ['doc/chkcrontab.1']
+-    if self.manprefix:
+-      for manpage in manpages:
+-        section = manpage.split('/')[-1].split('.')[-1]
+-        manpage_file = manpage.split('/')[-1]
+-        manpage_dir = os.path.realpath(os.path.join(self.manprefix,
+-                                                    'man%s' % section))
+-        if not self.dry_run:
+-          try:
+-            os.makedirs(manpage_dir)
+-          except OSError:
+-            pass
+-        file_util.copy_file(manpage,
+-                            os.path.join(manpage_dir, manpage_file),
+-                            dry_run=self.dry_run)
+ 
+ # Only override install if not being run by setuptools.
+ cmdclass = {'test': TestCmd,

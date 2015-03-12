@@ -1,0 +1,30 @@
+--- a/share/server/core/defines/global.php	2013-07-17 14:40:39.768577131 +0200
++++ b/share/server/core/defines/global.php	2013-07-17 14:41:44.492006012 +0200
+@@ -65,7 +65,7 @@
+ define('DEBUGLEVEL', 6);
+ 
+ // Path to the debug file
+-define('DEBUGFILE', '../../../var/nagvis-debug.log');
++define('DEBUGFILE', '../../var/nagvis-debug.log');
+ 
+ // It is possible to define a conf.d directory for splitting the main
+ // configuration in several files. Only the values defined in the CONST_MAINCFG
+@@ -79,14 +79,14 @@
+ // The last value wins.
+ //
+ // Path to the main configuration file
+-define('CONST_MAINCFG', '../../../etc/nagvis.ini.php');
+-define('CONST_MAINCFG_CACHE', '../../../var/nagvis-conf');
++define('CONST_MAINCFG', '../../etc/nagvis.ini.php');
++define('CONST_MAINCFG_CACHE', '../../var/nagvis-conf');
+ 
+ // Path to the main configuration conf.d directory
+-define('CONST_MAINCFG_DIR', '../../../etc/conf.d');
++define('CONST_MAINCFG_DIR', '../../etc/conf.d');
+ 
+ // The directory below the NagVis root which is shared by the webserver
+-define('HTDOCS_DIR', 'share');
++define('HTDOCS_DIR', '');
+ 
+ // Needed minimal PHP version
+ define('CONST_NEEDED_PHP_VERSION', '5.0');

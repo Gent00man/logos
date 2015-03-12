@@ -1,0 +1,65 @@
+#!/sbin/runscript
+# Copyright 1999-2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+depend() {
+  after mysql
+}
+
+remove_pid() {
+  if [ -f ${TUNGSTEN_HOME}/tungsten/tungsten-replicator/var/trep.pid ]; then
+    rm -v ${TUNGSTEN_HOME}/tungsten/tungsten-replicator/var/trep.pid
+  fi
+}
+
+start() {
+  PIDFILE="${TUNGSTEN_HOME}/tungsten/tungsten-replicator/var/trep.pid"
+
+  if [ -f $PIDFILE ]; then
+    pgrep -u ${TUNGSTEN_USER}|grep -q `cat $PIDFILE`
+    if [ $? -eq 0 ]; then
+      echo "Tungsten already running"
+      exit 1
+    fi
+  fi
+
+  pgrep -f -u ${TUNGSTEN_USER} 'java.*com.continuent.tungsten.replicator.management.ReplicationServiceManager'
+  if [ $? -eq 0 ]; then
+    echo "Tungsten already running"
+    exit 1
+  fi
+
+  remove_pid
+
+  su - ${TUNGSTEN_USER} -c "cd ${TUNGSTEN_HOME}/tungsten/tungsten-replicator/bin && ./replicator start"
+}
+
+stop() {
+  su - ${TUNGSTEN_USER} -c "cd ${TUNGSTEN_HOME}/tungsten/tungsten-replicator/bin && ./replicator stop"
+
+  TIMEOUT=20
+  while [ $TIMEOUT -gt 0 ]; do
+
+    pgrep -f -u ${TUNGSTEN_USER} java
+    if [ $? -eq 0 ]; then
+      echo -n "$TIMEOUT "
+      TIMEOUT=$(($TIMEOUT - 1))
+      sleep 1
+
+      if [ $TIMEOUT -eq 0 ]; then
+        echo "Killing tungsten after timeout..."
+        pkill -9 -u ${TUNGSTEN_USER}
+      fi
+    else
+      TIMEOUT=0
+    fi
+
+  done
+
+  remove_pid
+}
+
+status() {
+  su - ${TUNGSTEN_USER} -c "cd ${TUNGSTEN_HOME}/tungsten/tungsten-replicator/bin && ./trepctl status"
+}

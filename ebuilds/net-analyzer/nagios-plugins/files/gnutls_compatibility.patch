@@ -1,0 +1,15 @@
+--- plugins/sslutils.c.orig	2014-04-24 08:41:35.837157526 +0200
++++ plugins/sslutils.c	2014-04-24 08:42:02.677234072 +0200
+@@ -86,10 +86,10 @@
+ 	if (cert && privkey) {
+ 		SSL_CTX_use_certificate_file(c, cert, SSL_FILETYPE_PEM);
+ 		SSL_CTX_use_PrivateKey_file(c, privkey, SSL_FILETYPE_PEM);
+-		if (!SSL_CTX_check_private_key(c)) {
++		/*if (!SSL_CTX_check_private_key(c)) {
+ 			printf ("%s\n", _("CRITICAL - Private key does not seem to match certificate!\n"));
+ 			return STATE_CRITICAL;
+-		}
++		}*/
+ 	}
+ #ifdef SSL_OP_NO_TICKET
+ 	SSL_CTX_set_options(c, SSL_OP_NO_TICKET);

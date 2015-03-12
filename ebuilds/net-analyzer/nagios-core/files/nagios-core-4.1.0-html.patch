@@ -1,0 +1,15 @@
+--- html/Makefile.in.orig	2015-02-18 13:14:58.000000000 +0000
++++ html/Makefile.in	2015-02-26 14:50:39.119357628 +0000
+@@ -45,6 +45,12 @@
+ devclean: distclean
+ 
+ install:
++	(cd angularjs && unzip angular-1.3.9.zip)
++	(cd angularjs && unzip ui-utils-0.2.1.zip)
++	mkdir bootstrap-3.3.0
++	(cd bootstrap-3.3.0 && unzip ../bootstrap-3.3.0-dist.zip && mv dist/* . && rmdir dist)
++	mkdir d3
++	(cd d3 && unzip ../d3-3.5.3.zip)
+ 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)
+ 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/media
+ 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/stylesheets
