@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<layman>
+    <overlay contact = "hydrapolic@gmail.com"
+            name = "hydra"
+            src = "git://github.com/hydrapolic/gentoo.git"
+            type = "git"
+            status = "unofficial">
+        <link>http://github.com/hydrapolic/gentoo/</link>
+        <description>
+            hydra gentoo overlay :)
+        </description>
+    </overlay>
+</layman>

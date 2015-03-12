@@ -1,0 +1,37 @@
+#!/sbin/runscript
+
+BEAVER="/usr/bin/beaver"
+CONFIGFILE="/etc/beaver/beaver.conf"
+PIDFILE="/run/beaver.pid"
+
+depend() {
+	use net
+}
+
+start() {
+	ebegin "Starting ${SVCNAME}"
+
+	if [ ! -f ${CONFIGFILE} ]; then
+		eerror "Please configure beaver with ${CONFIGFILE}"
+		exit 1
+	fi
+
+	start-stop-daemon --start \
+		--pidfile="${PIDFILE}" \
+		--exec ${BEAVER} -- -D -c ${CONFIGFILE} -P ${PIDFILE}
+
+	sleep 1
+	local retval=1
+	if [ -f $PIDFILE ]; then
+		retval=0
+	fi
+	eend $retval
+}
+
+stop() {
+	ebegin "Stopping ${SVCNAME}"
+
+	start-stop-daemon --stop \
+		--pidfile=${PIDFILE}
+	eend $?
+}

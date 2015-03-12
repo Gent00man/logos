@@ -1,0 +1,23 @@
+--- unifi/controller.py.orig	2014-06-22 22:15:14.000000000 +0200
++++ unifi/controller.py	2015-01-28 08:15:20.899426383 +0100
+@@ -2,7 +2,7 @@
+     # Ugly hack to force SSLv3 and avoid
+     # urllib2.URLError: <urlopen error [Errno 1] _ssl.c:504: error:14077438:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert internal error>
+     import _ssl
+-    _ssl.PROTOCOL_SSLv23 = _ssl.PROTOCOL_SSLv3
++    _ssl.PROTOCOL_SSLv23 = _ssl.PROTOCOL_TLSv1
+ except:
+     pass
+ 
+@@ -12,6 +12,11 @@
+ import urllib
+ import urllib2
+ 
++import ssl
++if hasattr(ssl, '_create_unverified_context'):
++    ssl._create_default_https_context = ssl._create_unverified_context
++
++
+ log = logging.getLogger(__name__)
+ 
+ class APIError(Exception):
