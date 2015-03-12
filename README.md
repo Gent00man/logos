@@ -1,4 +1,6 @@
 # logos
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/nih0/logos)
+
 /g/'s Official OS - lo/g/OS
 
 // To Do:
