@@ -5,7 +5,8 @@
 
 // 1: Make Logo
 
-// 2: Create IRC (or slack?)
+// 2: Create IRC
+irc.novolume.de
 
 
 // 3: Make OS
