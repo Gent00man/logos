@@ -7,4 +7,7 @@
 
 // 2: Create IRC
 
+irc.novolume.de
+
+
 // 3: Make OS
